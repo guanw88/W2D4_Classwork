@@ -60,16 +60,30 @@ end
 # p largest_contiguous_subsum_1(list)
 
 def largest_contiguous_subsum_2(array)
-  maximum = array[0]
-  (1..array.length).each do |substring_len|
-    array.each_with_index do |el, idx|
-      substring = array.slice(idx, substring_len)
-      substring_sum = substring.reduce(:+)
-      maximum = [maximum, substring_sum].max
+  largest = nil
+  running_tally = nil
+
+  array.each_with_index do |el, i|
+    if i == 0
+      largest = el
+      running_tally = el
+    elsif i > 0
+      if running_tally < 0
+        running_tally = el
+      else
+        running_tally += el
+      end
+    end
+    if running_tally > largest
+      largest = running_tally
     end
   end
-  return maximum
+  largest
 end
 
-list = [-5, 2, 4, -7, 11, -5]
+list = [5, 3, -7]
+p largest_contiguous_subsum_2(list)
+   list = [2, 3, -6, 7, -6, 7]
+p largest_contiguous_subsum_2(list)
+list = [-5, -1, -3]
 p largest_contiguous_subsum_2(list)
