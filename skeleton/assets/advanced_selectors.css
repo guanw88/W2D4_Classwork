@@ -43,4 +43,29 @@ ol {
   font-weight: bold;
 }
 
+input[type="radio"] {
+    cursor: pointer;
+    outline: none;
+    -webkit-appearance: none;
+}
 
+input:last-child {
+    background-color: gold;
+}
+
+input:last-child:hover {
+    background-color: darkgoldenrod;
+}
+
+li:nth-child(even) {
+    background-color: lightgray;
+}
+
+input[type="radio"] + img {
+    background-position: top;
+}
+
+.star {
+  background-position: bottom;
+
+}
