@@ -68,15 +68,9 @@ def largest_contiguous_subsum_2(array)
       largest = el
       running_tally = el
     elsif i > 0
-      if running_tally < 0
-        running_tally = el
-      else
-        running_tally += el
-      end
+      running_tally < 0 ? running_tally = el : running_tally += el
     end
-    if running_tally > largest
-      largest = running_tally
-    end
+    largest = running_tally if running_tally > largest
   end
   largest
 end
