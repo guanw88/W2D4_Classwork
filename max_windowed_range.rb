@@ -38,11 +38,11 @@ class MyQueue
     @store.empty?
   end
 
-  def enqueue(el)
+  def enqueue(el) # O(1)
     @store.push(el)
   end
 
-  def dequeue
+  def dequeue # O(n)
     @store.shift
   end
 
@@ -65,12 +65,37 @@ class MyStack
     @store.empty?
   end
 
-  def push(el)
+  def push(el) # O(1)
     @store.push(el)
   end
 
-  def pop
+  def pop # O(1)
     @store.pop
+  end
+end
+
+class StackQueue
+  # need size, empty?, enqueue, and dequeue methods
+  def initialize
+    @stack_store = []
+  end
+
+  def size
+    @stack_store.size
+  end
+
+  def empty?
+    @stack_store.empty?
+  end
+
+  def enqueue(el)
+    @stack_store << MyStack.new.push(el)
+  end
+
+  def dequeue
+    first_stack = @stack_store[0]
+    @stack_store.delete_at(0)
+    return first_stack.pop
   end
 
 end
